@@ -1,5 +1,7 @@
-const { getAll, create, getOne, remove, update } = require('../controllers/user.controllers');
+const { verify } = require('jsonwebtoken');
+const { getAll, create, remove, update, login } = require('../controllers/user.controllers');
 const express = require('express');
+const { verifyJwt } = require('../utils/verifyJWT');
 
 const routerUser = express.Router();
 
@@ -7,10 +9,11 @@ routerUser.route('/')
     .get(getAll)
     .post(create);
 
-routerUser.route('/user/login', routerUser)
+routerUser.route('/login') 
+    .post(login);
 
 routerUser.route('/:id')
-    .delete(remove)
-    .put(update);
+    .delete(verifyJwt, remove)
+    .put(verifyJwt, update);
 
 module.exports = routerUser;
