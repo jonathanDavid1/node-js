@@ -7,6 +7,7 @@ const Category = sequelize.define('category', {
         allowNull: false,
         unique: true
     },
+    
 });
 
 module.exports = Category;
