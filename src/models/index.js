@@ -4,7 +4,7 @@ const Product = require("./Product");
 const Purchase = require("./Purchase");
 const User = require("./User");
 
-
+//Category Id from Products
 Product.belongsTo(Category)
 Category.hasMany(Product)
 

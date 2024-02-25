@@ -4,7 +4,7 @@ const express = require('express');
 const routerPurchase = express.Router();
 
 routerPurchase.route('/')
-    .get(getAll),
+    .get(getAll)
     .post(create)
 
 
