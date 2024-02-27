@@ -23,13 +23,13 @@ beforeAll(async () => {
   TOKEN = res.body.token
 
   const categoryBody = {
-    name: "smart Tv"
+    name: "smartphones"
   }
 
   category = await Category.create(categoryBody)
 
   product = {
-    title: "Lg oled 55",
+    title: "pixel 7A",
     description: "lroem10",
     price: 20.30,
     categoryId: category.id
@@ -80,7 +80,7 @@ test("GET ONE -> 'URL_BASE/:id', should resturn status code 200 and res.body.tit
 test("PUT -> 'URL_BASE/:id', should resturn status code 200 and res.body.title = productUpdate.title", async () => {
 
   const productUpdate = {
-    title: "Samsung oled 55",
+    title: "Samsung Qled",
   }
 
   const res = await request(app)
