@@ -3,19 +3,23 @@ const Purchase = require('../models/Purchase');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const ProductImg = require('../models/ProductImg');
 
 const getAll = catchError(async (req, res) => {
   const userId = req.user.id
   const result = await Purchase.findAll({
-    where: { userId },
-    include: [
+    where: { userId }, 
+    include:  [
+      // Product
       {
         model: Product,
-        attributes: { exclude: ["createdAt", "updatedAt"] },
-        include: {
+        attributes: { exclude: ["updatedAt", "createdAt"] },
+        include: [{
           model: Category,
-          attributes: ["name"]
-        }
+          attributes: ['name']
+        }, {
+          model: ProductImg
+        }]
       }
     ]
   })
