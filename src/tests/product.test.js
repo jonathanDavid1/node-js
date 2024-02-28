@@ -64,7 +64,21 @@ test("GET -> 'URL_BASE', should resturn status code 200 and res.body.legnth = 1"
   expect(res.body[0].category.id).toBe(category.id)
 })
 
-test("GET ONE -> 'URL_BASE/:id', should resturn status code 200 and res.body.title = product.title", async () => {
+test("GET -> 'URL_BASE', should return status code 200, res.body to be defined, and res.body.length ==== 1, res.body[0].categoryId === category.id , and res.body[0].category.id === category.id", async () => {
+  const res = await request(app)
+    .get(`${URL_BASE}?category=${category.id}`)
+  expect(res.status).toBe(200)
+  expect(res.body).toBeDefined()
+  expect(res.body).toHaveLength(1)
+
+  expect(res.body[0].categoryId).toBeDefined()
+  expect(res.body[0].categoryId).toBe(category.id)
+
+  expect(res.body[0].category).toBeDefined()
+  expect(res.body[0].category.id).toBe(category.id)
+})
+
+test("GET ONE -> 'URL_BASE/productId', should resturn status code 200 and res.body.title = product.title", async () => {
 
   const res = await request(app)
     .get(`${URL_BASE}/${productId}`)

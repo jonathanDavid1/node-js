@@ -6,9 +6,7 @@ const ProductImg = require('../models/ProductImg');
 
 const getAll = catchError(async (req, res) => {
   const userId = req.user.id
-  const results 
-  
-  = await Cart.findAll({
+  const results = await Cart.findAll({
     where: { userId },
     include: [
       // Product

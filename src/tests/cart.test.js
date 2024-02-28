@@ -2,6 +2,7 @@ require('../models')
 const request = require("supertest")
 const app = require("../app")
 const Product = require("../models/Product")
+const Cart = require('../models/Cart')
 
 const URL_USER = '/users/login'
 const URL_BASE = '/cart'
