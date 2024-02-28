@@ -13,7 +13,7 @@ const router = express.Router();
 router.use('/users', routerUser)
 router.use('/categories', routerCategory)
 router.use('/products', routerProduct)
-router.use('/carts',verifyJWT, routerCart)
+router.use('/cart',verifyJWT, routerCart)
 router.use('/purchases', verifyJWT, routerPurchase)
 router.use('/product_images', routerProductImg)
 

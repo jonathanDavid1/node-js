@@ -6,25 +6,31 @@ const ProductImg = require('../models/ProductImg');
 
 const getAll = catchError(async (req, res) => {
   const userId = req.user.id
-  const results = await Cart.findAll({
+  const results 
+  
+  = await Cart.findAll({
     where: { userId },
     include: [
       // Product
       {
         model: Product,
         attributes: { exclude: ["updatedAt", "createdAt"] },
-        include: [{
-          model: Category,
-          attributes: ['name']
-        }, {
-          model: ProductImg
-        }]
+        include: [
+          {
+            model: Category,
+            attributes: ['name']
+          },
+          {
+            model: ProductImg
+          }
+        ]
       }
     ]
 
   });
   return res.json(results);
 });
+
 const getOne = catchError(async (req, res) => {
   const { id } = req.params
   const userId = req.user.id
@@ -35,12 +41,15 @@ const getOne = catchError(async (req, res) => {
       {
         model: Product,
         attributes: { exclude: ["updatedAt", "createdAt"] },
-        include: [{
-          model: Category,
-          attributes: ['name']
-        }, {
-          model: ProductImg
-        }]
+        include: [
+          {
+            model: Category,
+            attributes: ['name']
+          },
+          {
+            model: ProductImg
+          }
+        ],
       }
     ]
 
@@ -68,6 +77,8 @@ const update = catchError(async (req, res) => {
   const userId = req.user.id
   const { id } = req.params;
   const { quantity } = req.body
+
+
   const result = await Cart.update(
     { quantity },
     { where: { id, userId }, returning: true }
